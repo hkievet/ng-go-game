@@ -1,0 +1,55 @@
+.board {
+    display: block;
+}
+
+.row {
+    display: block;
+    clear: both;
+}
+
+.cell {
+    float: left;
+    height: 100px;
+    width: 100px;
+    display:block;
+    text-align: center;
+    line-height: 100px;
+    user-select: none;
+
+    &:hover {
+        border-radius: 100%;
+        background-color: black;
+    }
+
+    &.place-white {
+        &:hover {
+            border-radius: 100%;
+            background-color: gray;
+        }
+    }
+
+    &.place-black {
+        &:hover {
+            border-radius: 100%;
+            background-color: black;
+        }
+    }
+    
+    &.black {
+        border-radius: 100%;
+        background-color: black;
+        color: black;
+        &:hover {
+            background-color: black;
+        }
+    }
+
+    &.white {
+        border-radius: 100%;
+        background-color: gray;
+        color: gray;
+        &:hover {
+            background-color: gray;
+        }
+    }
+}

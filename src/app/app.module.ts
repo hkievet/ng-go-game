@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { GoGameComponent } from './go-game/go-game.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GoGameComponent
   ],
   imports: [
     BrowserModule,
