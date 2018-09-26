@@ -83,7 +83,7 @@ describe("A goboard dammit", () => {
         expect(surroundedCell.isNone()).toBe(true);
     });
 
-    xit('should fuck up a two connecting white piece surrounded by black pieces', () => {
+    it('should fuck up a two connecting white piece surrounded by black pieces', () => {
         const board = new GoBoard(4);
         const coordinateForBlack = [
             { x: 1, y: 0 },
@@ -103,8 +103,8 @@ describe("A goboard dammit", () => {
         board.placePiece(placementCell, "black");
         let surroundedCell;
         surroundedCell = board.getPieceAtCoordinate(coordinateForWhite[0]);
-        expect(surroundedCell.isBlack()).toBe(true);
+        expect(surroundedCell.isNone()).toBe(true);
         surroundedCell = board.getPieceAtCoordinate(coordinateForWhite[1]);
-        expect(surroundedCell.isBlack()).toBe(true);
+        expect(surroundedCell.isNone()).toBe(true);
     });
 });

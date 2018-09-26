@@ -46,6 +46,7 @@ export class GoBoard {
                                 return true;
                             }
                         }
+                        return false
                     });
                     if (surroundingLiberties && surroundingLiberties.length) {
                         liberties.push(...surroundingLiberties);
