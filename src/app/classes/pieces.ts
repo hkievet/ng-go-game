@@ -1,5 +1,5 @@
 export class GoPiece {
-    public type = "" 
+    public color = "" 
     public coordinates: Coordinates;
 
     constructor( _coordinates: Coordinates) {
@@ -8,27 +8,35 @@ export class GoPiece {
     }
 
     public isWhite() {
-        return this.type == GoPieceType.white;
+        return this.color == GoPieceType.white;
     }
 
     public isBlack() {
-        return this.type == GoPieceType.black;
+        return this.color == GoPieceType.black;
     }
 
     public isNone() {
-        return this.type == GoPieceType.none;
+        return this.color == GoPieceType.none;
     }
 
     public makeWhite() {
-        this.type = GoPieceType.white;
+        this.color = GoPieceType.white;
     }
 
     public makeBlack() {
-        this.type = GoPieceType.black;
+        this.color = GoPieceType.black;
     }
 
     public makeNone() {
-        this.type = GoPieceType.none;
+        this.color = GoPieceType.none;
+    }
+
+    public getOpposite() {
+        return invertColor(this.getColor());
+    }
+
+    public getColor() {
+        return this.color;
     }
 
     public makeType( type: string ) {
@@ -44,7 +52,14 @@ export class GoPiece {
     }
 }
 
-interface Coordinates {
+export function invertColor(color: string): string {
+    if (color === GoPieceType.none) {
+        return GoPieceType.none;
+    }
+    return color === GoPieceType.black ? GoPieceType.white : GoPieceType.black;
+}
+
+export interface Coordinates {
     x: number;
     y: number;
 }

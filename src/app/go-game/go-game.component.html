@@ -1,11 +1,11 @@
 <div class="board">
   <div class="row" *ngFor="let row of board.board">
     <div  class="cell"
-          [class.white]="cell.type === pieceTypes.white"
-          [class.black]="cell.type === pieceTypes.black"
+          [class.white]="cell.color === pieceTypes.white"
+          [class.black]="cell.color === pieceTypes.black"
           [class.place-black]="currentColor === pieceTypes.black"
           [class.place-white]="currentColor === pieceTypes.white"
           *ngFor="let cell of row"
-          (click)="selectCell(cell)">{{cell.type}} {{pieceTypes[cell.type]}}</div>
+          (click)="selectCell(cell)">{{cell.color}} {{pieceTypes[cell.color]}}</div>
   </div>
 </div>

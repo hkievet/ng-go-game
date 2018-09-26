@@ -21,11 +21,11 @@ export class GoGameComponent implements OnInit {
   }
 
   public selectCell(cell: GoPiece) {
-    console.log(cell);
-    if (cell.isNone()) {
-      // is valid move?
-      cell.makeType(this.currentColor);
+    const valid = this.board.placePiece(cell, this.currentColor);
+    if (valid) {
       this.toggleCurrentColor();
+    } else {
+      // alert('invalid move');
     }
   };
 
