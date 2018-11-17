@@ -2,7 +2,7 @@ import { GoBoard } from "./board";
 
 describe("A goboard dammit", () => {
     describe("getOpposingAdjacentStrings", () => {
-        it('should return none if placing a piece next to no other piece', () => {
+        it('should return an empty array if placing a piece next to no other piece', () => {
             const board = new GoBoard(3);
             // place in center
             const coordinateForBlack = [
@@ -14,7 +14,7 @@ describe("A goboard dammit", () => {
             expect(strings.length).toBe(0);
         });
 
-        it('should return none if placing a piece next to a piece of the same color', () => {
+        it('should return an empty array if placing a piece next to a piece of the same color', () => {
             const board = new GoBoard(3);
             // place in center
             const coordinateForBlack = [
@@ -63,7 +63,7 @@ describe("A goboard dammit", () => {
         expect(board.placePiece(cell, "white")).toBe(false);
     });
 
-    it('should fuck up a single white piece surrounded by black pieces', () => {
+    it('should capture a single white piece surrounded by black pieces', () => {
         const board = new GoBoard(3);
         const coordinateForBlack = [
             { x: 1, y: 0 },
@@ -83,7 +83,7 @@ describe("A goboard dammit", () => {
         expect(surroundedCell.isNone()).toBe(true);
     });
 
-    it('should fuck up a two connecting white piece surrounded by black pieces', () => {
+    it('should capture two connecting white piece surrounded by black pieces', () => {
         const board = new GoBoard(4);
         const coordinateForBlack = [
             { x: 1, y: 0 },

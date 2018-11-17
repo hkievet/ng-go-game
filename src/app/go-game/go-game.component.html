@@ -1,11 +1,46 @@
-<div class="board">
-  <div class="row" *ngFor="let row of board.board">
-    <div  class="cell"
-          [class.white]="cell.color === pieceTypes.white"
-          [class.black]="cell.color === pieceTypes.black"
-          [class.place-black]="currentColor === pieceTypes.black"
-          [class.place-white]="currentColor === pieceTypes.white"
-          *ngFor="let cell of row"
-          (click)="selectCell(cell)">{{cell.color}} {{pieceTypes[cell.color]}}</div>
+<h1>The Game of Go</h1>
+  <div class="board">
+    <div class="row" *ngFor="let row of board.board; let rowIndex = index">
+      <div  class="cell"
+            *ngFor="let cell of row; let colIndex = index"
+            (click)="selectCell(cell)">
+            <div class="piece-wrapper">
+              <div class="piece"
+                [class.white]="cell.color === pieceTypes.white"
+                [class.black]="cell.color === pieceTypes.black"
+                [class.place-black]="currentColor === pieceTypes.black"
+                [class.place-white]="currentColor === pieceTypes.white"
+              >
+            </div>
+            </div>
+            <div class="top-row" 
+              [class.isFirstRow]="rowIndex===0"
+              [class.isFirstCol]="colIndex==0"
+              [class.isLastCol]="colIndex==row.length - 1"
+            >
+              <div class="left"
+                [class.isFirstCol]="colIndex==0"
+              ></div>
+              <div class="right"
+                [class.isLastCol]="colIndex==row.length - 1"
+              ></div>
+            </div>
+            <div class="bottom-row"
+              [class.isLastRow]="rowIndex===board.board.length - 1"
+            >
+              <div class="left"
+                [class.isFirstCol]="colIndex==0"
+              ></div>
+              <div class="right"
+                [class.isLastCol]="colIndex==row.length - 1"
+              ></div>
+            </div>
+          </div>
+    </div>
   </div>
+<div class="status-text">
+  {{ statusText }}
+</div>
+<div class="error-text">
+  {{ errorText }}
 </div>

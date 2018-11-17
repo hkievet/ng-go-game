@@ -1,55 +1,182 @@
+$cell-size: 100px;
+$board-background-color: #D0C897;
+$board-grid-color: #735F4D;
+
+$grid-border: 1px solid $board-grid-color;
+$negate-grid-border: 1px solid $board-background-color;
+
+h1 {
+    font-family: "helvetica neue", sans-serif;
+    margin: 0 auto;
+    width: fit-content;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+
+
 .board {
     display: block;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .row {
     display: block;
     clear: both;
+    height: $cell-size;
 }
 
 .cell {
     float: left;
-    height: 100px;
-    width: 100px;
+    height: $cell-size;
+    width: $cell-size;
     display:block;
     text-align: center;
     line-height: 100px;
     user-select: none;
+    background-color: $board-background-color;
 
-    &:hover {
-        border-radius: 100%;
-        background-color: black;
-    }
+    .piece-wrapper {
+        position: absolute;
+        height: inherit;
+        width: inherit;
+        .piece {
+            height: $cell-size - 10px;
+            width: $cell-size - 10px;
+            margin: 5px;
+            z-index: 5; // higher than the grid lines
+            &:hover {
+                border-radius: 100%;
+                background-color: black;
+            }
 
-    &.place-white {
-        &:hover {
-            border-radius: 100%;
-            background-color: gray;
+            &.place-white {
+                &:hover {
+                    border-radius: 100%;
+                    background-color: gray;
+                }
+            }
+
+            &.place-black {
+                &:hover {
+                    border-radius: 100%;
+                    background-color: black;
+                }
+            }
+            
+            &.black {
+                border-radius: 100%;
+                background-color: black;
+                color: black;
+                &:hover {
+                    background-color: black;
+                }
+            }
+
+            &.white {
+                border-radius: 100%;
+                background-color: gray;
+                color: gray;
+                &:hover {
+                    background-color: gray;
+                }
+            }
         }
     }
 
-    &.place-black {
-        &:hover {
-            border-radius: 100%;
-            background-color: black;
+    ////////////////////////////////////////////////////////
+    // grid border css logic
+    ////////////////////////////////////////////////////////
+
+    .top-row {
+        height:50%;
+        div {
+            width: ($cell-size/2 - 1px);
+            height:($cell-size/2 - 1px);
+            display:inline-block;
         }
+        .left {
+            //background-color:orange;
+            float: left;
+            border-right: $grid-border;
+            border-bottom: $grid-border;
+            &.isFirstCol {
+                border-bottom: $negate-grid-border;
+            }
+        }
+        .right {
+            //background-color:red;
+            float: right;
+            border-left: $grid-border;
+            border-bottom: $grid-border;
+            &.isLastCol {
+                border-bottom: $negate-grid-border;
+            }
+        }
+
     }
     
-    &.black {
-        border-radius: 100%;
-        background-color: black;
-        color: black;
-        &:hover {
-            background-color: black;
+    .bottom-row {
+        height:50%;
+        div {
+            width: ($cell-size/2 - 1px);
+            height:($cell-size/2 - 1px);
+            display:inline-block;
+        }
+        .left {
+            //background-color:green;
+            float: left;
+            border-right: $grid-border;
+            border-top: $grid-border;
+            &.isFirstCol {
+                border-top: $negate-grid-border;
+            }
+        }
+        .right {
+            //background-color:blue;
+            float: right;
+            border-left: $grid-border;
+            border-top: $grid-border;
+            &.isLastCol {
+                border-top: $negate-grid-border;
+            }
         }
     }
 
-    &.white {
-        border-radius: 100%;
-        background-color: gray;
-        color: gray;
-        &:hover {
-            background-color: gray;
+    .isFirstRow {
+        .left {
+            border-right: $negate-grid-border;
+        }
+        .right {
+            border-left: $negate-grid-border;
         }
     }
+    .isLastRow {
+        .left {
+            border-right: $negate-grid-border;
+        }
+        .right {
+            border-left: $negate-grid-border;
+        }
+    }
+}
+
+.status-text {
+    padding-top: 20px;
+    margin: 0 auto;
+    width: fit-content;
+    font-family: "helvetica neue", sans-serif;
+
+    &::first-letter{
+        text-transform: uppercase;
+    }
+}
+
+.error-text {
+    padding-top: 20px;
+    margin: 0 auto;
+    width: fit-content;
+    font-family: "helvetica neue", sans-serif;
+    color: red;
 }
